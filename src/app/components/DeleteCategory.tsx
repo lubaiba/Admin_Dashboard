@@ -4,14 +4,7 @@ import { AppDispatch } from '@/app/store/store';
 import { deleteCategory, fetchCategories } from '@/app/dashboard/category/category-slice';
 import { Dialog, DialogContent, DialogTitle, DialogActions, Button } from '@mui/material';
 
-interface DeleteCategoryProps {
-    categoryId: number | null;
-    isOpen: boolean;
-    onClose: () => void;
-    fetchCategories:()=>void;
-}
-
-const DeleteCategory: React.FC<DeleteCategoryProps> = ({ categoryId, isOpen, onClose }) => {
+const DeleteCategory= ({ categoryId, isOpen, onClose }:any) => {
     const dispatch = useDispatch<AppDispatch>();
     const handleDeleteCategory = async () => {
         try {
