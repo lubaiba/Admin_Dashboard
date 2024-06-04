@@ -1,26 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/app/store/store';
 import { updateCategory, fetchCategories } from '@/app/dashboard/category/category-slice';
 import { Dialog, DialogContent, DialogTitle, DialogActions, TextField, Button } from '@mui/material';
 
-interface EditCategoryProps {
-    categoryId: number | null;
-    title: string;
-    image:string;
-    isOpen: boolean;
-    onClose: () => void;
-    fetchCategories:()=>void;
-}
-
-const EditCategory: React.FC<EditCategoryProps> = ({ categoryId, title,image, isOpen, onClose }) => {
+const EditCategory= ({ categoryId, title,image, isOpen, onClose }:any) => {
     const [newCategoryName, setNewCategoryName] = useState(title);
     const [newImage,setNewImage]=useState(image);
     const dispatch = useDispatch<AppDispatch>();
-
-    useEffect(() => {
-        setNewCategoryName(title);
-    }, [title]);
 
     const handleUpdateCategory = async () => {
         try {
