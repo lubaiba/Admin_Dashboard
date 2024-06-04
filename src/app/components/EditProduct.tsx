@@ -1,29 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store/store';
 import { fetchProducts,updateProduct } from '../dashboard/products/product-slice';
 import { Dialog, DialogContent, DialogTitle, DialogActions, TextField, Button } from '@mui/material';
 
-interface EditProductProps {
-  productId: number | null;
-  title: string;
-  price: number;
-  isOpen: boolean;
-  onClose: () => void;
-  fetchProducts: () => void;
-}
-
-const EditProduct: React.FC<EditProductProps> = ({ productId, title, price, isOpen, onClose }) => {
+const EditProduct = ({ productId, title, price, isOpen, onClose }:any) => {
   const [newProductTitle, setNewProductTitle] = useState(title);
   const [newProductPrice, setNewProductPrice] = useState(price);
   const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    setNewProductTitle(title);
-    setNewProductPrice(price);
-  }, [title, price]);
-
-  const handleUpdateProduct = async () => {
+const handleUpdateProduct = async () => {
     try {
       if (productId) {
           await dispatch(updateProduct({ id: productId, title: newProductTitle, price: newProductPrice }));
