@@ -23,25 +23,6 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-interface AddProductPayload {
-  title: string;
-  description:string;
-  price: number;
-  categoryId:number;
-  images:string[];
-}
-export const addProduct = createAsyncThunk(
-  'products/addProduct',
-  async ({title, price,categoryId, description ,images}: AddProductPayload, thunkAPI) => {
-    try {
-      const response = await ProductService.addNewProduct(title, price,categoryId, description,images);
-      return response;
-    } catch (error) {
-      console.error('Error occured, adding product:', error);
-      throw error;
-    }
-  }
-);
 export const addNewProduct = createAsyncThunk(
   "products/addNewProduct",
   async (productData: {
@@ -50,7 +31,7 @@ export const addNewProduct = createAsyncThunk(
     categoryId: number;
     description: string;
     images: string[];
-  },thunkAPI) => {
+  }) => {
     const response = await ProductService.addNewProduct(
       productData.title,
       productData.price,
@@ -61,12 +42,6 @@ export const addNewProduct = createAsyncThunk(
     return response;
   }
 );
-
-interface EditProductPayload {
-  id: number;
-  title: string;
-  price: number;
-}
 
 export const updateProduct = createAsyncThunk(
   'products/updateProduct', async ({ id, title ,price}: { id: number; title: string,price:number }) => {
