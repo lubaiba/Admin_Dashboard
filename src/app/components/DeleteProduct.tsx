@@ -5,14 +5,7 @@ import { Dialog, DialogContent, DialogTitle, DialogActions, Button } from '@mui/
 import { deleteProduct} from '../dashboard/products/product-slice';
 import { fetchProducts } from '../dashboard/products/product-slice';
 
-interface DeleteProductProps {
-  deleteProductId: number | null;
-  isDeleteDialogOpen: boolean;
-  closeDeleteDialog: () => void;
-  fetchProducts: () => void;
-}
-
-const DeleteProduct: React.FC<DeleteProductProps> = ({ deleteProductId, isDeleteDialogOpen, closeDeleteDialog}) => {
+const DeleteProduct = ({ deleteProductId, isDeleteDialogOpen, closeDeleteDialog}:any) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDeleteProduct = async () => {
